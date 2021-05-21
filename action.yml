@@ -1,0 +1,15 @@
+name: 'Publish action versions'
+description: 'Move the major version tag to point to the specified ref'
+inputs:
+  source-tag:
+    description: 'Tag name that the major tag will point to. Examples: v1.2.3, 1.2.3'
+    required: true
+  token:
+    description: 'Token to get an authenticated Octokit'
+    default: ${{ github.token }}
+outputs:
+  major-tag:
+    description: 'The major version tag that has been updated (created). Examples: v1, 1'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

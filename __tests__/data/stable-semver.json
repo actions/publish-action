@@ -1,0 +1,12 @@
+{
+    "options": {},
+    "loose": false,
+    "includePrerelease": false,
+    "raw": "v1.0.0",
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "prerelease": [],
+    "build": [],
+    "version": "1.0.0"
+}

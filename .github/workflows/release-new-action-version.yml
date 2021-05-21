@@ -1,0 +1,48 @@
+name: Release new action version
+on:
+  release:
+    types: [released]
+  workflow_dispatch:
+    inputs:
+      TAG_NAME:
+        description: 'Tag name that the major tag will point to'
+        required: true
+
+env:
+  TAG_NAME: ${{ github.event.inputs.TAG_NAME || github.event.release.tag_name }}
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  update_tag:
+    name: Update the major tag to include the ${{ github.event.inputs.TAG_NAME || github.event.release.tag_name }} changes
+    environment:
+      name: releaseNewActionVersion
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Update the ${{ env.TAG_NAME }} tag
+      id: update-major-tag
+      uses: ./
+      with:
+        source-tag: ${{ env.TAG_NAME }}
+
+    - name: Send slack message
+      if: failure()
+      run: |
+        curl `
+          -X POST `
+          -H 'Content-type: application/json' `
+          --data '{\"text\":\"Failed to update a major tag for the ${{ github.repository }} action\"}' `
+          ${{ secrets.SLACK }}
+
+    - name: Send slack message
+      if: success()
+      run: |
+        curl `
+          -X POST `
+          -H 'Content-type: application/json' `
+          --data '{\"text\":\"The ${{ steps.update-major-tag.outputs.major-tag }} tag has been successfully updated for the ${{ github.repository }} action to include changes from the ${{ env.TAG_NAME }}\"}' `
+          ${{ secrets.SLACK }}

@@ -1,6 +1,6 @@
 {
   "name": "publish-action",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Update the major version tag (v1, v2, etc.) to point to the specified tag",
   "main": "lib/main.js",
   "scripts": {

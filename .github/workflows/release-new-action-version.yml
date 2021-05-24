@@ -17,9 +17,12 @@ defaults:
 jobs:
   update_tag:
     name: Update the major tag to include the ${{ github.event.inputs.TAG_NAME || github.event.release.tag_name }} changes
+    # Remember to configure the releaseNewActionVersion environment with required approvers in the repository settings
     environment:
       name: releaseNewActionVersion
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - uses: actions/checkout@v2
 
@@ -36,7 +39,7 @@ jobs:
           -X POST `
           -H 'Content-type: application/json' `
           --data '{\"text\":\"Failed to update a major tag for the ${{ github.repository }} action\"}' `
-          ${{ secrets.SLACK }}
+          ${{ secrets.SLACK_WEBHOOK }}
 
     - name: Send slack message
       if: success()
@@ -45,4 +48,4 @@ jobs:
           -X POST `
           -H 'Content-type: application/json' `
           --data '{\"text\":\"The ${{ steps.update-major-tag.outputs.major-tag }} tag has been successfully updated for the ${{ github.repository }} action to include changes from the ${{ env.TAG_NAME }}\"}' `
-          ${{ secrets.SLACK }}
+          ${{ secrets.SLACK_WEBHOOK }}

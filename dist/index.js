@@ -42,7 +42,7 @@ async function findTag(tag, octokitClient) {
             return null;
         }
         else {
-            throw err;
+            throw new Error(`Retrieving refs failed with the following error: ${err}`);
         }
     }
 }
@@ -68,7 +68,7 @@ async function validateIfReleaseIsPublished(tag, octokitClient) {
             throw new Error(`No GitHub release found for the ${tag} tag`);
         }
         else {
-            throw err;
+            throw new Error(`Retrieving releases failed with the following error: ${err}`);
         }
     }
 }

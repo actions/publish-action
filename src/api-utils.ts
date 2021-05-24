@@ -28,7 +28,9 @@ async function findTag(
         if (err.status === 404) {
             return null;
         } else {
-            throw err;
+            throw new Error(
+                `Retrieving refs failed with the following error: ${err}`
+            );
         }
     }
 }
@@ -68,7 +70,9 @@ export async function validateIfReleaseIsPublished(
                 `No GitHub release found for the ${tag} tag`
             );
         } else {
-            throw err;
+            throw new Error(
+                `Retrieving releases failed with the following error: ${err}`
+            );
         }
     }
 }

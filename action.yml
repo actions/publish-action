@@ -1,5 +1,5 @@
 name: 'Publish action versions'
-description: 'Move the major version tag to point to the specified ref'
+description: 'Move the major version tag to point to a specified ref'
 inputs:
   source-tag:
     description: 'Tag name that the major tag will point to. Examples: v1.2.3, 1.2.3'

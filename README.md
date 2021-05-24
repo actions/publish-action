@@ -10,7 +10,7 @@ This action adds reliability to the new action versions publishing and handles t
 Alpha. Action is under development and internal testing.
 
 ## Usage
-Action can be triggered on release creation or manually. The actual major tag update will require manual approval. 
+This action can be triggered automatically when a release is created or manually using a `workflow_dispatch` event. The actual major tag update will require manual approval. 
 See [release-new-action-version.yml](./.github/workflows/release-new-action-version.yml) for usage example.
 
 See [action.yml](action.yml) for a complete description of input and output fields.

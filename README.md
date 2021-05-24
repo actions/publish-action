@@ -1,6 +1,6 @@
 # publish-action
 
-**Please note: this action is for internal usage only, we don't track issues or accept any contributions. We also do not recommend it for public or production usage.**
+**Please note: this action is for internal usage only, issues are disabled and contributing PRs will not be reviewed. We also do not recommend this action for public or production usage while it is still in development.**
 
 This action adds reliability to the new action versions publishing and handles the following cases:
 - Update a major tag (v1, for example) to point to the latest release (v1.2.1, for example).

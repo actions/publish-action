@@ -26,9 +26,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateTag = exports.validateIfReleaseIsPublished = void 0;
+exports.postMessageToSlack = exports.updateTag = exports.validateIfReleaseIsPublished = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5438);
+const http_client_1 = __nccwpck_require__(9925);
 async function findTag(tag, octokitClient) {
     try {
         const { data: foundTag } = await octokitClient.git.getRef({
@@ -96,6 +97,12 @@ async function updateTag(sourceTag, targetTag, octokitClient) {
     }
 }
 exports.updateTag = updateTag;
+async function postMessageToSlack(slackWebhook, message) {
+    const jsonData = { text: message };
+    const http = new http_client_1.HttpClient();
+    await http.postJson(slackWebhook, jsonData);
+}
+exports.postMessageToSlack = postMessageToSlack;
 
 
 /***/ }),
@@ -127,6 +134,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
+const github_1 = __nccwpck_require__(5438);
 const api_utils_1 = __nccwpck_require__(2430);
 const version_utils_1 = __nccwpck_require__(1534);
 async function run() {
@@ -140,12 +148,22 @@ async function run() {
         await api_utils_1.updateTag(sourceTagName, majorTag, octokitClient);
         core.setOutput('major-tag', majorTag);
         core.info(`The '${majorTag}' major tag now points to the '${sourceTagName}' tag`);
+        const slackMessage = `The ${majorTag} tag has been successfully updated for the ${github_1.context.repo.repo} action to include changes from the ${sourceTagName}`;
+        await reportStatusToSlack(slackMessage);
     }
     catch (error) {
         core.setFailed(error.message);
+        const slackMessage = `Failed to update a major tag for the ${github_1.context.repo.repo} action`;
+        await reportStatusToSlack(slackMessage);
     }
 }
 ;
+async function reportStatusToSlack(message) {
+    const slackWebhook = core.getInput('slack-webhook');
+    if (slackWebhook) {
+        await api_utils_1.postMessageToSlack(slackWebhook, message);
+    }
+}
 run();
 
 

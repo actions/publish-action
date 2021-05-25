@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import { context } from '@actions/github';
 import { GitHub } from '@actions/github/lib/utils';
+import { HttpClient } from '@actions/http-client';
 
 interface GitRef {
     ref: string;
@@ -59,7 +60,7 @@ export async function validateIfReleaseIsPublished(
             tag,
         });
 
-        if (foundRelease.prerelease){
+        if (foundRelease.prerelease) {
             throw new Error(
                 `The '${foundRelease.name}' release is marked as pre-release. Updating tags for pre-release is not supported`
             );
@@ -104,4 +105,10 @@ export async function updateTag(
             sha: sourceTagSHA
         });
     }
+}
+
+export async function postMessageToSlack(slackWebhook: string, message: string): Promise<void> {
+    const jsonData = {text: message}
+    const http = new HttpClient();
+    await http.postJson(slackWebhook, jsonData);
 }

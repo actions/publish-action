@@ -4,6 +4,8 @@ inputs:
   source-tag:
     description: 'Tag name that the major tag will point to. Examples: v1.2.3, 1.2.3'
     required: true
+  slack-webhook:
+    description: 'Slack Webhook URL to post a message'
   token:
     description: 'Token to get an authenticated Octokit'
     default: ${{ github.token }}

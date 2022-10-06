@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/actions/publish-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.7",
+    "@actions/core": "^1.10.0",
     "@actions/http-client": "^1.0.11",
     "@actions/github": "^4.0.0",
     "semver": "^7.3.5"

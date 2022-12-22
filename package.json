@@ -5,7 +5,9 @@
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc && ncc build",
-    "test": "jest"
+    "test": "jest",
+    "format-check": "echo \"Fake command that does nothing. It is used in reusable workflows\"",
+    "lint": "echo \"Fake command that does nothing. It is used in reusable workflows\""
   },
   "repository": {
     "type": "git",

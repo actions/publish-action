@@ -148,7 +148,7 @@ async function run() {
         await api_utils_1.updateTag(sourceTagName, majorTag, octokitClient);
         core.setOutput('major-tag', majorTag);
         core.info(`The '${majorTag}' major tag now points to the '${sourceTagName}' tag`);
-        const slackMessage = `The ${majorTag} tag has been successfully updated for the ${github_1.context.repo.repo} action to include changes from  ${sourceTagName}`;
+        const slackMessage = `The ${majorTag} tag has been successfully updated for the ${github_1.context.repo.repo} action to include changes from ${sourceTagName}`;
         await reportStatusToSlack(slackMessage);
     }
     catch (error) {

@@ -20,10 +20,10 @@ async function run(): Promise<void> {
         core.setOutput('major-tag', majorTag);
         core.info(`The '${majorTag}' major tag now points to the '${sourceTagName}' tag`);
 
-        const slackMessage = `The ${majorTag} tag has been successfully updated for the ${context.repo.repo} action to include changes from the ${sourceTagName}`;
+        const slackMessage = `The ${majorTag} tag has been successfully updated for the ${context.repo.repo} action to include changes from ${sourceTagName}`;
         await reportStatusToSlack(slackMessage);
     } catch (error) {
-        core.setFailed(error.message);
+        core.setFailed((error as Error).message);
 
         const slackMessage = `Failed to update a major tag for the ${context.repo.repo} action`;
         await reportStatusToSlack(slackMessage);

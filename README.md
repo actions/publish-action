@@ -1,5 +1,7 @@
 # publish-action
 
+[![Basic validation](https://github.com/actions/publish-action/actions/workflows/basic-validation.yml/badge.svg?branch=main)](https://github.com/actions/publish-action/actions/workflows/basic-validation.yml)
+
 **Please note: this action is for internal usage only, issues are disabled and contributing PRs will not be reviewed. We also do not recommend this action for public or production usage while it is still in development.**
 
 This action adds reliability to the new action versions publishing and handles the following cases:

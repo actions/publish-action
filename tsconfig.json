@@ -5,6 +5,7 @@
     "outDir": "./lib",
     "rootDir": "./src",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
 
     "strict": true,
     "noImplicitAny": true,

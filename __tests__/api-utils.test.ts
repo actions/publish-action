@@ -1,39 +1,43 @@
-import * as github from "@actions/github";
-import * as apiUtils from "../src/api-utils";
+import * as github from '@actions/github';
+import * as apiUtils from '../src/api-utils';
 
-const prereleaseData = require("./data/pre-release.json");
-const releaseData = require("./data/release.json");
+import prereleaseData from './data/pre-release.json';
+import releaseData from './data/release.json';
 
-const token = "faketoken";
+const token = 'faketoken';
 const octokitClient = github.getOctokit(token);
 
 let getReleaseSpy: jest.SpyInstance;
 
-process.env.GITHUB_REPOSITORY = "test/repository";
+process.env.GITHUB_REPOSITORY = 'test/repository';
 
-describe("validateIfReleaseIsPublished", () => {
-    beforeEach(() => {
-        getReleaseSpy = jest.spyOn(octokitClient.repos, "getReleaseByTag");
-    });
+describe('validateIfReleaseIsPublished', () => {
+  beforeEach(() => {
+    getReleaseSpy = jest.spyOn(octokitClient.repos, 'getReleaseByTag');
+  });
 
-    it("throw if release is marked as pre-release", async () => {
-        getReleaseSpy.mockReturnValue(prereleaseData);
-        
-        expect.assertions(1);
-        await expect(apiUtils.validateIfReleaseIsPublished("v1.0.0", octokitClient)).rejects.toThrowError(
-            "The 'v1.0.0' release is marked as pre-release. Updating tags for pre-release is not supported"
-        );
-    });
+  it('throw if release is marked as pre-release', async () => {
+    getReleaseSpy.mockReturnValue(prereleaseData);
 
-    it("validate that release is published", async () => {
-        getReleaseSpy.mockReturnValue(releaseData);
+    expect.assertions(1);
+    await expect(
+      apiUtils.validateIfReleaseIsPublished('v1.0.0', octokitClient)
+    ).rejects.toThrow(
+      "The 'v1.0.0' release is marked as pre-release. Updating tags for pre-release is not supported"
+    );
+  });
 
-        expect.assertions(1);
-        await expect(apiUtils.validateIfReleaseIsPublished("v1.1.0", octokitClient)).resolves.not.toThrow();
-    });
+  it('validate that release is published', async () => {
+    getReleaseSpy.mockReturnValue(releaseData);
 
-    afterEach(() => {
-        jest.resetAllMocks();
-        jest.clearAllMocks();
-    });
+    expect.assertions(1);
+    await expect(
+      apiUtils.validateIfReleaseIsPublished('v1.1.0', octokitClient)
+    ).resolves.not.toThrow();
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
+    jest.clearAllMocks();
+  });
 });

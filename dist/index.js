@@ -58,7 +58,7 @@ async function validateIfReleaseIsPublished(tag, octokitClient) {
     try {
         const { data: foundRelease } = await octokitClient.repos.getReleaseByTag({
             ...github_1.context.repo,
-            tag,
+            tag
         });
         if (foundRelease.prerelease) {
             throw new Error(`The '${foundRelease.name}' release is marked as pre-release. Updating tags for pre-release is not supported`);
@@ -157,7 +157,6 @@ async function run() {
         await reportStatusToSlack(slackMessage);
     }
 }
-;
 async function reportStatusToSlack(message) {
     const slackWebhook = core.getInput('slack-webhook');
     if (slackWebhook) {

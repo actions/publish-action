@@ -31,19 +31,19 @@ describe('isStableSemverVersion', () => {
 });
 
 describe('validateSemverVersionFromTag', () => {
-  it('validate a tag containing an valid semantic version', () => {
+  it('validate a tag containing a valid semantic version', () => {
     expect(() =>
       versionUtils.validateSemverVersionFromTag('1.0.0')
     ).not.toThrow();
   });
 
-  it("validate a tag containing an valid semantic version with 'v' prefix", () => {
+  it("validate a tag containing a valid semantic version with 'v' prefix", () => {
     expect(() =>
       versionUtils.validateSemverVersionFromTag('v1.0.0')
     ).not.toThrow();
   });
 
-  it('validate a tag containing an valid semantic version with build metadata', () => {
+  it('validate a tag containing a valid semantic version with build metadata', () => {
     expect(() =>
       versionUtils.validateSemverVersionFromTag('v1.0.0+20130313144700')
     ).not.toThrow();
@@ -57,7 +57,7 @@ describe('validateSemverVersionFromTag', () => {
     );
   });
 
-  it('throw when a tag contains an valid unstable semantic version', () => {
+  it('throw when a tag contains a valid unstable semantic version', () => {
     expect(() =>
       versionUtils.validateSemverVersionFromTag('v1.0.0-beta.1')
     ).toThrow(
@@ -65,7 +65,7 @@ describe('validateSemverVersionFromTag', () => {
     );
   });
 
-  it('throw when a tag contains an valid unstable semantic version with build metadata', () => {
+  it('throw when a tag contains a valid unstable semantic version with build metadata', () => {
     expect(() =>
       versionUtils.validateSemverVersionFromTag('v1.0.0-beta.1+20130313144700')
     ).toThrow(

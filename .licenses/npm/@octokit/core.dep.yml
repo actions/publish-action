@@ -1,9 +1,9 @@
 ---
 name: "@octokit/core"
-version: 3.4.0
+version: 5.0.2
 type: npm
 summary: Extendable client for GitHub's REST & GraphQL APIs
-homepage: https://github.com/octokit/core.js#readme
+homepage:
 license: mit
 licenses:
 - sources: LICENSE

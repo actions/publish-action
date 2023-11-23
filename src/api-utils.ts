@@ -57,10 +57,12 @@ export async function validateIfReleaseIsPublished(
   octokitClient: InstanceType<typeof GitHub>
 ): Promise<void> {
   try {
-    const {data: foundRelease} = await octokitClient.rest.repos.getReleaseByTag({
-      ...context.repo,
-      tag
-    });
+    const {data: foundRelease} = await octokitClient.rest.repos.getReleaseByTag(
+      {
+        ...context.repo,
+        tag
+      }
+    );
 
     if (foundRelease.prerelease) {
       throw new Error(

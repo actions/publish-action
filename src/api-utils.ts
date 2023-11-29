@@ -14,7 +14,7 @@ interface GitRef {
   };
 }
 
-interface Error {
+interface ErrorStatus extends Error {
   status?: number;
 }
 
@@ -30,7 +30,7 @@ async function findTag(
 
     return foundTag;
   } catch (err) {
-    if ((err as Error).status === 404) {
+    if ((err as ErrorStatus).status === 404) {
       return null;
     } else {
       throw new Error(
@@ -70,7 +70,7 @@ export async function validateIfReleaseIsPublished(
       );
     }
   } catch (err) {
-    if ((err as Error).status === 404) {
+    if ((err as ErrorStatus).status === 404) {
       throw new Error(`No GitHub release found for the ${tag} tag`);
     } else {
       throw new Error(

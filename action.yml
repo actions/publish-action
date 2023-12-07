@@ -13,5 +13,5 @@ outputs:
   major-tag:
     description: 'The major version tag that has been updated (created). Examples: v1, 1'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'

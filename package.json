@@ -1,6 +1,6 @@
 {
   "name": "publish-action",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Update the major version tag (v1, v2, etc.) to point to the specified tag",
   "main": "lib/main.js",
   "scripts": {
@@ -27,24 +27,24 @@
   "homepage": "https://github.com/actions/publish-action#readme",
   "dependencies": {
     "@actions/core": "^1.2.7",
-    "@actions/github": "^4.0.0",
-    "@actions/http-client": "^1.0.11",
+    "@actions/github": "^6.0.0",
+    "@actions/http-client": "^2.2.0",
     "semver": "^7.5.2"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^29.5.10",
     "@types/semver": "^7.3.6",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "@typescript-eslint/parser": "^5.54.0",
-    "@vercel/ncc": "^0.28.5",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "@vercel/ncc": "^0.38.1",
     "eslint": "^8.35.0",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jest": "^27.2.1",
     "eslint-plugin-node": "^11.1.0",
-    "jest": "^27.2.5",
-    "jest-circus": "^27.2.5",
-    "prettier": "^2.8.4",
-    "ts-jest": "^27.0.5",
-    "typescript": "^4.2.4"
+    "jest": "^29.7.0",
+    "jest-circus": "^29.7.0",
+    "prettier": "^3.1.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.2"
   }
 }

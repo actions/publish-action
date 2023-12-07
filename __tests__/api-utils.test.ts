@@ -13,7 +13,7 @@ process.env.GITHUB_REPOSITORY = 'test/repository';
 
 describe('validateIfReleaseIsPublished', () => {
   beforeEach(() => {
-    getReleaseSpy = jest.spyOn(octokitClient.repos, 'getReleaseByTag');
+    getReleaseSpy = jest.spyOn(octokitClient.rest.repos, 'getReleaseByTag');
   });
 
   it('throw if release is marked as pre-release', async () => {

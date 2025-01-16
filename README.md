@@ -20,6 +20,15 @@ Read more about action versioning notation in [action-versioning.md](https://git
 
 To roll back a release in case of customer impact, start the workflow manually and specify the previous stable tag.
 
+## Recommended permissions
+
+When using the `publish-action` in your GitHub Actions workflow, it is recommended to set the following permissions to ensure proper functionality:
+
+```yaml
+permissions:
+  contents: write # access to publish release
+```
+
 ## Conributions
 
 We don't accept contributions until the action is ready for production.

@@ -1,17 +1,16 @@
-name: 'Publish action versions'
-description: 'Move the major version tag to point to a specified ref'
+name: "GitHub Publish Action"
+description: "Automates publishing of npm packages to a registry."
+author: "Boom Token"
+
+branding:
+  icon: "package"  # Choose an icon (see options below)
+  color: "orange"  # Choose a color (see options below)
+
 inputs:
-  source-tag:
-    description: 'Tag name that the major tag will point to. Examples: v1.2.3, 1.2.3'
+  NPM_TOKEN:
+    description: "The npm authentication token for publishing."
     required: true
-  slack-webhook:
-    description: 'Slack Webhook URL to post a message'
-  token:
-    description: 'Token to get an authenticated Octokit'
-    default: ${{ github.token }}
-outputs:
-  major-tag:
-    description: 'The major version tag that has been updated (created). Examples: v1, 1'
+
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+  using: "node16"
+  main: "dist/index.js"

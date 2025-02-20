@@ -1,0 +1,2 @@
+- name: GitHub Publish Action
+  uses: Boomtokn/publish-action@v1.0.0
